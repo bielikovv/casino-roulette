@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script>
+    $(document).ready(function () {
+        var csrf = $('input[name=csrfmiddlewaretoken]').val();
+
+        $('.btn').click(function () {
+            $.ajax({
+                url: '{% url "roulette_main_page" %}',
+                type: 'get',
+                success: function (response) {
+                    document.getElementById('random').innerHTML = '';
+                    $('#random').append(response.result);
+                    document.getElementById('balance').innerHTML = 'Balance: ' + response.after_bet_balance + '₴';
+                    document.getElementById('nav-balance').innerHTML = response.after_bet_balance + '₴';
+                    document.getElementById('black-header-bet-value').innerHTML = ' ';
+                    document.getElementById('red-header-bet-value').innerHTML = ' ';
+                    document.getElementById('blue-header-bet-value').innerHTML = ' ';
+                    document.getElementById('gold-header-bet-value').innerHTML = ' ';
+
+                }
+            });
+        });
+
+
+        $('#black-block-header').on('click', function () {
+            var amount = $('input[name=amount-value]').val();
+            var random_color = document.getElementById('random').innerText;
+            $.ajax({
+                url: '{% url "roulette_main_page" %}',
+                type: 'post',
+                data: {
+                    amount_value: amount,
+                    color: 'BLACK',
+                    csrfmiddlewaretoken: csrf,
+                    random_color: random_color,
+                },
+                success: function (response) {
+                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                    document.getElementById('black-header-bet-value').innerHTML = response.amount_value;
+                }
+            })
+        });
+
+        $('#red-block-header').on('click', function () {
+            var amount = $('input[name=amount-value]').val();
+            $.ajax({
+                url: '{% url "roulette_main_page" %}',
+                type: 'post',
+                data: {
+                    amount_value: amount,
+                    color: 'RED',
+                    csrfmiddlewaretoken: csrf,
+                },
+                success: function (response) {
+                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                    document.getElementById('red-header-bet-value').innerHTML = response.amount_value;
+                }
+            })
+        });
+
+        $('#blue-block-header').on('click', function () {
+            var amount = $('input[name=amount-value]').val();
+            $.ajax({
+                url: '{% url "roulette_main_page" %}',
+                type: 'post',
+                data: {
+                    amount_value: amount,
+                    color: 'BLUE',
+                    csrfmiddlewaretoken: csrf,
+                },
+                success: function (response) {
+                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                    document.getElementById('blue-header-bet-value').innerHTML = response.amount_value;
+                }
+            })
+        });
+
+        $('#gold-block-header').on('click', function () {
+            var amount = $('input[name=amount-value]').val();
+            $.ajax({
+                url: '{% url "roulette_main_page" %}',
+                type: 'post',
+                data: {
+                    amount_value: amount,
+                    color: 'GOLD',
+                    csrfmiddlewaretoken: csrf,
+                },
+                success: function (response) {
+                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                    document.getElementById('gold-header-bet-value').innerHTML = response.amount_value;
+                }
+            })
+        });
+    });
+</script>
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div id="bet-block-card">
+            {% csrf_token %}
+            <div id="input-bet-value-card">
+                <div id="balance">
+                    Balance: {{ request.user.profile.balance }}₴
+                </div>
+                <h4>Enter bet amount:</h4>
+                <input type="text" id="input-bet-value" name="amount-value" class="form-control form-control-sm">
+            </div>
+
+        </div>
+
+
+
+        <div id="roulette-window-pannel">
+
+            <div id="random">
+                Click play to START
+            </div>
+            <button type="button" class="btn btn-primary btn-lg">PLAY</button>
+        </div>
+    </div>
+
+
+    <div id="bet-pannel">
+        <div id="black-block" class="black-block">
+            <div id="black-block-header">
+                <h3>2×</h3>
+                <div id="black-header-bet-value">
+
+                </div>
+            </div>
+        </div>
+        <div id="red-block" class="red-block">
+            <div id="red-block-header">
+                <h3>3×</h3>
+                <div id="red-header-bet-value">
+
+                </div>
+            </div>
+        </div>
+        <div id="blue-block" class="blue-block">
+            <div id="blue-block-header">
+                <h3>5×</h3>
+                <div id="blue-header-bet-value">
+
+                </div>
+            </div>
+        </div>
+        <div id="gold-block" class="gold-block">
+            <div id="gold-block-header">
+                <h3>50×</h3>
+                <div id="gold-header-bet-value">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+<nav class="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'roulette_main_page' %}">I&B Roulette</a>
+    {% if user.is_authenticated%}
+    <div class="dropdown">
+      <div id="card-user">
+        <img id="small-card-user-photo" src="{{ request.user.profile.photo.url }}" alt="">
+        <div id="nickname-card-user">
+          {% if request.user.profile.nickname %}
+          {{ request.user.profile.nickname }}
+          {% else %}
+          Anonymous
+          {% endif %}
+          <div id="nav-balance">
+            {{ request.user.profile.balance }}₴
+          </div>
+
+        </div>
+      </div>
+      <div class="dropdown-menu" id="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{% url 'profile' %}">My profile</a>
+        <hr class="dropdown-divider" style="background: #ffffff">
+        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+    {% else %}
+    <div class="navbar-nav" id="auth-bar">
+      <a class="nav-link active" id="reg" href="{% url 'register' %}">Register</a><a class="nav-link active" id="log" href="{% url 'login' %}">Login</a>
+    </div>
+    {% endif %}
+
+  </div>
+</nav>
+
+
+<script>
+  document.getElementById('card-user').onclick = function () {
+    let el = document.getElementById('dropdown-menu');
+    if (el.style.display == 'none'){
+      document.getElementById('dropdown-menu').style.display = 'block';
+    }
+    else{
+      document.getElementById('dropdown-menu').style.display = 'none';
+    }
+
+  };
+
+
+
+</script>
