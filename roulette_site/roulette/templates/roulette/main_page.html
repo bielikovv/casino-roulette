@@ -5,6 +5,49 @@
     $(document).ready(function () {
         var csrf = $('input[name=csrfmiddlewaretoken]').val();
 
+        $('#max-btn').click(function () {
+            let t = document.getElementById('nav-balance').innerText.replace('₴', '');
+            document.getElementById('input-bet-value').value = t;
+        })
+
+        $('#c-btn').click(function () {
+            document.getElementById('input-bet-value').value = '';
+        })
+
+        $('#half-btn').click(function () {
+            let t = document.getElementById('input-bet-value').value;
+            t = Number(t) / 2;
+            document.getElementById('input-bet-value').value = t;
+        })
+
+        $('#multi-double-btn').click(function () {
+            let t = document.getElementById('input-bet-value').value;
+            t = Number(t) * 2;
+            document.getElementById('input-bet-value').value = t;
+        })
+        $('#add-hundred-btn').click(function () {
+            let t = document.getElementById('input-bet-value').value;
+            t = Number(t) + 100;
+            document.getElementById('input-bet-value').value = t;
+        })
+        $('#add-thousand-btn').click(function () {
+            let t = document.getElementById('input-bet-value').value;
+            t = Number(t) + 1000;
+            document.getElementById('input-bet-value').value = t;
+        })
+        $('#add-ten-thousand-btn').click(function () {
+            let t = document.getElementById('input-bet-value').value;
+            t = Number(t) + 10000;
+            document.getElementById('input-bet-value').value = t;
+        })
+        $('#add-hundred-thousand-btn').click(function () {
+            let t = document.getElementById('input-bet-value').value;
+            t = Number(t) + 100000;
+            document.getElementById('input-bet-value').value = t;
+        })
+
+
+
         setInterval(function () {
             $.ajax({
                 url: '{% url "roulette_main_page" %}',
@@ -27,6 +70,8 @@
         $('#black-block-header').on('click', function () {
             var amount = $('input[name=amount-value]').val();
             var random_color = document.getElementById('random').innerText;
+            let t = document.getElementById('nav-balance').innerText.replace('₴', '');
+            if (Number(amount) <= Number(t)){
             $.ajax({
                 url: '{% url "roulette_main_page" %}',
                 type: 'post',
@@ -41,11 +86,13 @@
                     document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
                     document.getElementById('black-header-bet-value').innerHTML = response.amount_value;
                 }
-            })
+            })};
         });
 
         $('#red-block-header').on('click', function () {
             var amount = $('input[name=amount-value]').val();
+            let t = document.getElementById('nav-balance').innerText.replace('₴', '');
+            if (Number(amount) <= Number(t)){
             $.ajax({
                 url: '{% url "roulette_main_page" %}',
                 type: 'post',
@@ -59,11 +106,13 @@
                     document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
                     document.getElementById('red-header-bet-value').innerHTML = response.amount_value;
                 }
-            })
+            })};
         });
 
         $('#blue-block-header').on('click', function () {
             var amount = $('input[name=amount-value]').val();
+            let t = document.getElementById('nav-balance').innerText.replace('₴', '');
+            if (Number(amount) <= Number(t)){
             $.ajax({
                 url: '{% url "roulette_main_page" %}',
                 type: 'post',
@@ -77,11 +126,13 @@
                     document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
                     document.getElementById('blue-header-bet-value').innerHTML = response.amount_value;
                 }
-            })
+            })};
         });
 
         $('#gold-block-header').on('click', function () {
             var amount = $('input[name=amount-value]').val();
+            let t = document.getElementById('nav-balance').innerText.replace('₴', '');
+            if (Number(amount) <= Number(t)){
             $.ajax({
                 url: '{% url "roulette_main_page" %}',
                 type: 'post',
@@ -95,7 +146,7 @@
                     document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
                     document.getElementById('gold-header-bet-value').innerHTML = response.amount_value;
                 }
-            })
+            })};
         });
     });
 </script>
@@ -113,6 +164,20 @@
                 </div>
                 <h4>Enter bet amount:</h4>
                 <input type="text" id="input-bet-value" name="amount-value" class="form-control form-control-sm">
+                <div id="buttons-control-input">
+                    <div id="upper-control">
+                        <button type="button" id="half-btn" class="btn btn-primary btn-sm">½</button>
+                        <button type="button" id="multi-double-btn" class="btn btn-primary btn-sm">2×</button>
+                        <button type="button" id="add-hundred-btn" class="btn btn-primary btn-sm">+100</button>
+                        <button type="button" id="add-thousand-btn" class="btn btn-primary btn-sm">+1K</button>
+                        <button type="button" id="add-ten-thousand-btn" class="btn btn-primary btn-sm">+10K</button>
+                        <button type="button" id="add-hundred-thousand-btn" class="btn btn-primary btn-sm">+100K</button>
+                    </div>
+                    <div id="lower-control">
+                        <button type="button" id="max-btn" class="btn btn-primary btn-sm">MAX</button>
+                        <button type="button" id="c-btn" class="btn btn-primary btn-sm">C</button>
+                    </div>
+                </div>
             </div>
 
         </div>

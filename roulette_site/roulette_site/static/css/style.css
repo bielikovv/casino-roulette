@@ -78,6 +78,28 @@ body{
     background-color: #1b1b1b;
 }
 
+#buttons-control-input{
+    background-color: #EAE7DC;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+#max-btn{
+    width: 48%;
+}
+#c-btn{
+    width: 48%;
+}
+#half-btn, #multi-double-btn, #add-hundred-btn, #add-thousand-btn, #add-ten-thousand-btn, #add-hundred-thousand-btn{
+    width: 15.25%;
+}
+
+#upper-control{
+    margin-bottom: 5px;
+}
+
+
 #bet-block-card{
     width: 35%;
     background-color: #D8C3A5;
