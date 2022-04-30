@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
+
 .navbar{
     background-color: #D8C3A5;
     margin-bottom: 50px;
     position: relative;
     z-index: 999;
-
+    font-family: 'Arvo', serif;
 }
 
 body{
@@ -19,11 +21,12 @@ body{
     width: 25px;
     height: 25px;
     border-radius: 25%;
-
+    margin-right: 10px;
 }
 
 #nickname-card-user{
     display: inline-block;
+    margin-top: 3px;
 }
 
 #nav-balance-card{
@@ -45,8 +48,9 @@ body{
     margin-top: 2px;
     position: relative;
     background-color: #ffffff;
-    padding: 5px;
     border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #card-user{
@@ -119,6 +123,7 @@ body{
     display: inline-block;
     cursor: pointer;
     -webkit-transition: 0.10s ease-out;
+    font-family: 'Arvo', serif;
 }
 
 #black-block-header:hover{
@@ -144,6 +149,7 @@ body{
     display: inline-block;
     -webkit-transition: 0.10s ease-out;
     cursor: pointer;
+    font-family: 'Arvo', serif;
 }
 
 #red-block-header:hover{
@@ -160,6 +166,7 @@ body{
     display: inline-block;
     -webkit-transition: 0.10s ease-out;
     cursor: pointer;
+    font-family: 'Arvo', serif;
 }
 
 #blue-block-header:hover{
@@ -173,6 +180,7 @@ body{
     font-size: 100px;
     margin-top: auto;
     margin-bottom: auto;
+    font-family: 'Arvo', serif;
 }
 
 #gold-block-header{
@@ -185,6 +193,7 @@ body{
     display: inline-block;
     -webkit-transition: 0.10s ease-out;
     cursor: pointer;
+    font-family: 'Arvo', serif;
 }
 
 #gold-block-header:hover{
@@ -199,6 +208,7 @@ body{
     padding: 15px;
     margin-bottom: 10px;
     color: #E85A4F;
+    font-family: 'Arvo', serif;
 }
 
 .form-control{
@@ -252,6 +262,7 @@ body{
     color: #E85A4F;
     padding: 40px;
     position: relative;
+    font-family: 'Arvo', serif;
 }
 #user-info{
     margin-left: 20px;
@@ -304,7 +315,7 @@ body{
     margin-top: 25px;
     color: #EAE7DC;
     padding: 25px;
-
+    font-family: 'Arvo', serif;
 }
 
 #statistic-card-info{
