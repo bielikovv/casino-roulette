@@ -71,82 +71,94 @@
             var amount = $('input[name=amount-value]').val();
             var random_color = document.getElementById('random').innerText;
             let t = document.getElementById('nav-balance').innerText.replace('₴', '');
-            if (Number(amount) <= Number(t)){
-            $.ajax({
-                url: '{% url "roulette_main_page" %}',
-                type: 'post',
-                data: {
-                    amount_value: amount,
-                    color: 'BLACK',
-                    csrfmiddlewaretoken: csrf,
-                    random_color: random_color,
-                },
-                success: function (response) {
-                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
-                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
-                    document.getElementById('black-header-bet-value').innerHTML = response.amount_value;
-                }
-            })};
+            if (Number(amount) > 0) {
+                if (Number(amount) <= Number(t)) {
+                    $.ajax({
+                        url: '{% url "roulette_main_page" %}',
+                        type: 'post',
+                        data: {
+                            amount_value: amount,
+                            color: 'BLACK',
+                            csrfmiddlewaretoken: csrf,
+                            random_color: random_color,
+                        },
+                        success: function (response) {
+                            document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                            document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                            document.getElementById('black-header-bet-value').innerHTML = response.amount_value;
+                        };
+                    });
+                };
+            };
         });
 
         $('#red-block-header').on('click', function () {
             var amount = $('input[name=amount-value]').val();
             let t = document.getElementById('nav-balance').innerText.replace('₴', '');
-            if (Number(amount) <= Number(t)){
-            $.ajax({
-                url: '{% url "roulette_main_page" %}',
-                type: 'post',
-                data: {
-                    amount_value: amount,
-                    color: 'RED',
-                    csrfmiddlewaretoken: csrf,
-                },
-                success: function (response) {
-                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
-                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
-                    document.getElementById('red-header-bet-value').innerHTML = response.amount_value;
-                }
-            })};
+            if (Number(amount) > 0) {
+                if (Number(amount) <= Number(t)) {
+                    $.ajax({
+                        url: '{% url "roulette_main_page" %}',
+                        type: 'post',
+                        data: {
+                            amount_value: amount,
+                            color: 'RED',
+                            csrfmiddlewaretoken: csrf,
+                        },
+                        success: function (response) {
+                            document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                            document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                            document.getElementById('red-header-bet-value').innerHTML = response.amount_value;
+                        };
+                    });
+                };
+            };
         });
 
         $('#blue-block-header').on('click', function () {
             var amount = $('input[name=amount-value]').val();
             let t = document.getElementById('nav-balance').innerText.replace('₴', '');
-            if (Number(amount) <= Number(t)){
-            $.ajax({
-                url: '{% url "roulette_main_page" %}',
-                type: 'post',
-                data: {
-                    amount_value: amount,
-                    color: 'BLUE',
-                    csrfmiddlewaretoken: csrf,
-                },
-                success: function (response) {
-                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
-                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
-                    document.getElementById('blue-header-bet-value').innerHTML = response.amount_value;
-                }
-            })};
+            if (Number(amount) > 0) {
+                if (Number(amount) <= Number(t)) {
+                    $.ajax({
+                        url: '{% url "roulette_main_page" %}',
+                        type: 'post',
+                        data: {
+                            amount_value: amount,
+                            color: 'BLUE',
+                            csrfmiddlewaretoken: csrf,
+                        },
+                        success: function (response) {
+                            document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                            document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                            document.getElementById('blue-header-bet-value').innerHTML = response.amount_value;
+                        };
+                    });
+                };
+            };
         });
 
         $('#gold-block-header').on('click', function () {
             var amount = $('input[name=amount-value]').val();
             let t = document.getElementById('nav-balance').innerText.replace('₴', '');
-            if (Number(amount) <= Number(t)){
-            $.ajax({
-                url: '{% url "roulette_main_page" %}',
-                type: 'post',
-                data: {
-                    amount_value: amount,
-                    color: 'GOLD',
-                    csrfmiddlewaretoken: csrf,
-                },
-                success: function (response) {
-                    document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
-                    document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
-                    document.getElementById('gold-header-bet-value').innerHTML = response.amount_value;
-                }
-            })};
+            if (Number(amount) > 0) {
+                if (Number(amount) <= Number(t)) {
+                    $.ajax({
+                        url: '{% url "roulette_main_page" %}',
+                        type: 'post',
+                        data: {
+                            amount_value: amount,
+                            color: 'GOLD',
+                            csrfmiddlewaretoken: csrf,
+                        },
+                        success: function (response) {
+                            document.getElementById('balance').innerHTML = 'Balance: ' + response.new_balance + '₴';
+                            document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                            document.getElementById('gold-header-bet-value').innerHTML = response.amount_value;
+                        };
+                    });
+                };
+            };
         });
     });
 </script>
