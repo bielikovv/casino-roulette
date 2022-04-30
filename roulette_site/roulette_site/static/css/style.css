@@ -1,5 +1,5 @@
 .navbar{
-    background-color: #1b1b1b;
+    background-color: #D8C3A5;
     margin-bottom: 50px;
     position: relative;
     z-index: 999;
@@ -7,11 +7,11 @@
 }
 
 body{
-    background: #303030;
+    background: #EAE7DC;
 }
 
 .navbar-brand{
-    color: #ffffff;
+    color: #E85A4F;
 }
 
 #small-card-user-photo{
@@ -26,18 +26,45 @@ body{
     display: inline-block;
 }
 
-#card-user{
-    display: inline-block;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-    text-align: center;
+#nav-balance-card{
+    background-color: #EAE7DC;
     padding: 5px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+#nav-buttons{
+    padding: 5px;
+    display: inline-block;
+}
+#nav-balance{
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 2px;
+    position: relative;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#card-user{
+    color: #E85A4F;
+
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 60px;
+    background-color: #EAE7DC;
 }
 
 .dropdown-menu{
-    background-color: #1b1b1b;
+    background-color: #ffffff;
     display: none;
 
 
@@ -53,15 +80,16 @@ body{
 
 #bet-block-card{
     width: 35%;
-    background-color: #303030;
+    background-color: #D8C3A5;
     margin-left: auto;
     margin-right: auto;
+    padding: 15px;
 
 }
 
 #black-block-header{
     width: 100%;
-    background-color: #303030;
+    background-color: #EAE7DC ;
     color: #1b1b1b;
     border: 3px solid #1b1b1b;
     padding: 10px;
@@ -80,11 +108,13 @@ body{
     width: 100%;
     margin-top: 30px;
     text-align: center;
+    background-color: #D8C3A5;
+    padding: 30px;
 }
 
 #red-block-header{
     width: 100%;
-    background-color: #303030;
+    background-color: #EAE7DC;
     color: #ba2121;
     border: 3px solid #ba2121;
     padding: 10px;
@@ -100,7 +130,7 @@ body{
 }
 #blue-block-header{
     width: 100%;
-    background-color: #303030;
+    background-color: #EAE7DC;
     color: #4ac1f7;
     border: 3px solid #4ac1f7;
     padding: 10px;
@@ -118,11 +148,14 @@ body{
 #random{
     color: #ffffff;
     text-align: center;
+    font-size: 100px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 #gold-block-header{
     width: 100%;
-    background-color: #303030;
+    background-color: #EAE7DC;
     color: #f5dd5d;
     border: 3px solid #f5dd5d;
     padding: 10px;
@@ -139,12 +172,11 @@ body{
 
 #input-bet-value-card{
     width: 100%;
-    background-color: #282828;
-    border-radius: 10px;
+    background-color: #D8C3A5;
     height: 120px;
     padding: 15px;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: #E85A4F;
 }
 
 .form-control{
@@ -159,6 +191,9 @@ body{
     width: 20%;
     margin-left: 10px;
     margin-right: 10px;
+    background-color: #EAE7DC;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
 }
 
 #red-block{
@@ -166,13 +201,18 @@ body{
     width: 20%;
     margin-left: 10px;
     margin-right: 10px;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
 }
+
 
 #blue-block{
     display: inline-block;
     width: 20%;
     margin-left: 10px;
     margin-right: 10px;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
 }
 
 #gold-block{
@@ -180,10 +220,101 @@ body{
     width: 20%;
     margin-left: 10px;
     margin-right: 10px;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
 }
 
+#user-profile-card{
+    width: 100%;
+    background-color: #D8C3A5;
+    color: #E85A4F;
+    padding: 40px;
+    position: relative;
+}
+#user-info{
+    margin-left: 20px;
+    display: inline-block;
+    position: absolute;
+    margin-top: 40px;
 
+}
+.btn-primary{
+    background-color: #E85A4F;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
 
+.btn-primary:hover{
+    background-color: #404040;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
+
+.btn-primary:focus{
+    background-color: #404040;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
+.btn-primary:active{
+    background-color: #404040;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
+
+#user-profile-update-card{
+    position: absolute;
+    background-color: #292929;
+    width: 50%;
+    text-align: center;
+    margin-left: 270px;
+    color: #ffffff;
+    padding: 25px;
+    display: none;
+}
+
+#statistic-card{
+    width: 100%;
+    background-color: #D8C3A5;
+    margin-top: 25px;
+    color: #EAE7DC;
+    padding: 25px;
+
+}
+
+#statistic-card-info{
+    background-color: #EAE7DC;
+    padding: 25px;
+}
+
+#all-bets-table{
+    background-color: #D8C3A5;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+#all-wins-table{
+    background-color: #D8C3A5;
+    padding: 20px;
+
+}
+#user-profile-background{
+    width: 100%;
+    padding: 10px;
+    background-color: #EAE7DC;
+}
+
+#user-profile-photo{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 15px;
+
+}
 
 
 

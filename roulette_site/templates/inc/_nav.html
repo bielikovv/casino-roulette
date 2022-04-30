@@ -1,7 +1,16 @@
 <nav class="navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'roulette_main_page' %}">I&B Roulette</a>
-    {% if user.is_authenticated%}
+    {% if user.is_authenticated %}
+    <div id="nav-balance-card">
+      <div id="nav-balance">
+        {{ request.user.profile.balance }}₴
+      </div>
+      <div id="nav-buttons">
+        <button type="button" class="btn btn-primary btn-sm">Deposit</button>
+        <button type="button" class="btn btn-primary btn-sm">Withdraw</button>
+      </div>
+    </div>
     <div class="dropdown">
       <div id="card-user">
         <img id="small-card-user-photo" src="{{ request.user.profile.photo.url }}" alt="">
@@ -11,10 +20,6 @@
           {% else %}
           Anonymous
           {% endif %}
-          <div id="nav-balance">
-            {{ request.user.profile.balance }}₴
-          </div>
-
         </div>
       </div>
       <div class="dropdown-menu" id="dropdown-menu" aria-labelledby="navbarDropdown">

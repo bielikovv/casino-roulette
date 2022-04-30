@@ -1,15 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script>
+    function showUpdateForm() {
+        document.getElementById('user-profile-update-card').style.display = 'block';
+    }
+
+    function hideUpdateForm() {
+        document.getElementById('user-profile-update-card').style.display = 'none';
+    }
+</script>
+
+
 
 <div class="container">
     <div class="row">
         <div id="user-profile-card">
-            <h3>{{ request.user.first_name }}</h3>
-            <h3>{{ request.user.last_name }}</h3>
-            <h3>{{ request.user.profile.nickname }}</h3>
-            <h3>{{ request.user.email }}</h3>
-            <img src="{{ request.user.profile.photo.url }}">
+            <div id="user-profile-background">
+
+                <img id='user-profile-photo' src="{{ request.user.profile.photo.url }}">
+                <div id="user-info">
+                    <h5>{{ request.user.first_name }} {{ request.user.last_name }}</h5>
+                    <h5>{{ request.user.profile.nickname }}</h5>
+                    <h5>{{ request.user.email }}</h5>
+                </div>
+                <div id="help-pannel">
+                    <button type="button" id='show-update-form-btn' onclick="showUpdateForm()" class="btn btn-primary btn-sm">Edit profile</button>
+                    <button type="button" class="btn btn-primary btn-sm">Send money</button>
+                </div>
+            </div>
         </div>
         <div id="user-profile-update-card">
             <form method="post">
@@ -17,7 +36,16 @@
                 {{ form1.as_p }}
                 {{ form2.as_p }}
                 <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" onclick="hideUpdateForm()" class="btn btn-primary">Back</button>
             </form>
+        </div>
+
+        <div id="statistic-card">
+            <h1>Account statistics</h1>
+            <div id="statistic-card-info">
+                <div id="all-bets-table"><h5>Bets for all time: {{ all_bets_value }}₴</h5></div>
+                <div id="all-wins-table"><h5>Wins for all time: {{ all_wins_value }}₴</h5></div>
+            </div>
         </div>
     </div>
 </div>

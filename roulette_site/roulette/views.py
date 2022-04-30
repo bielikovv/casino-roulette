@@ -22,32 +22,40 @@ class ShowMainPage(View):
                 if color == 'GOLD':
                     current_balance.balance += int(amount_value) * 50
                     current_balance.save()
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*50, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'GOLD', 'after_bet_balance': current_balance.balance}, status=200)
+                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                 amount_value = 0
                 return JsonResponse({'result': 'GOLD', 'after_bet_balance': current_balance.balance}, status=200)
             elif 2 < num <= 21:
                 if color == 'BLUE':
                     current_balance.balance += int(amount_value) * 5
                     current_balance.save()
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*5, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'BLUE', 'after_bet_balance': current_balance.balance}, status=200)
+                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                 amount_value = 0
                 return JsonResponse({'result': 'BLUE', 'after_bet_balance': current_balance.balance}, status=200)
             elif 21 < num <= 52:
                 if color == 'RED':
                     current_balance.balance += int(amount_value) * 3
                     current_balance.save()
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*3, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'RED', 'after_bet_balance': current_balance.balance}, status=200)
+                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                 amount_value = 0
                 return JsonResponse({'result': 'RED', 'after_bet_balance': current_balance.balance}, status=200)
             elif 52 < num <= 100:
                 if color == 'BLACK':
                     current_balance.balance += int(amount_value) * 2
                     current_balance.save()
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*2, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'BLACK', 'after_bet_balance': current_balance.balance}, status=200)
+                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                 amount_value = 0
                 return JsonResponse({'result': 'BLACK', 'after_bet_balance': current_balance.balance}, status=200)
 
@@ -71,6 +79,13 @@ class ShowMainPage(View):
 
 
 def show_user_profile(request):
+    statistic = StatisticRouletteUser.objects.filter(user=request.user)
+    all_bets_value = 0
+    all_wins_value = 0
+    for item in statistic:
+        all_bets_value += item.bet_value
+        if item.win_value != None:
+            all_wins_value += int(item.win_value)
     if request.method == 'POST':
         form1 = RedactInfoUserForm(request.POST, instance=request.user)
         form2 = RedactInfoProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -81,7 +96,7 @@ def show_user_profile(request):
     else:
         form1 = RedactInfoUserForm(instance=request.user)
         form2 = RedactInfoProfileForm(instance=request.user.profile)
-    return render(request, 'roulette/user_profile.html', {'form1': form1, 'form2': form2})
+    return render(request, 'roulette/user_profile.html', {'form1': form1, 'form2': form2, 'all_bets_value':all_bets_value, 'all_wins_value': all_wins_value})
 
 
 

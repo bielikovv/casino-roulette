@@ -15,7 +15,7 @@ class RouletteBlock(models.Model):
 
 
 class Bet(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', null=True)
     color = models.ForeignKey(RouletteBlock, on_delete=models.CASCADE, verbose_name='Color')
     round = models.ForeignKey('Round', on_delete=models.CASCADE, verbose_name='Round')
     time = models.DateTimeField(auto_now_add=True, verbose_name='Time')
@@ -24,7 +24,15 @@ class Bet(models.Model):
 
 class Round(models.Model):
     color = models.CharField(max_length=30, verbose_name='Random color', null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', null=True)
+
+
+
+class StatisticRouletteUser(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', null=True)
+    bet_value = models.IntegerField(verbose_name='Bet value', null=True)
+    win_value = models.IntegerField(verbose_name='Win value', null=True)
+    color = models.CharField(max_length=30, verbose_name='Bet color', null=True)
 
 
 

@@ -5,7 +5,7 @@
     $(document).ready(function () {
         var csrf = $('input[name=csrfmiddlewaretoken]').val();
 
-        $('.btn').click(function () {
+        setInterval(function () {
             $.ajax({
                 url: '{% url "roulette_main_page" %}',
                 type: 'get',
@@ -21,7 +21,7 @@
 
                 }
             });
-        });
+        }, 12000);
 
 
         $('#black-block-header').on('click', function () {
@@ -122,9 +122,11 @@
         <div id="roulette-window-pannel">
 
             <div id="random">
-                Click play to START
+                WAIT 12 SECONDS
             </div>
-            <button type="button" class="btn btn-primary btn-lg">PLAY</button>
+            <div id="timer">
+
+            </div>
         </div>
     </div>
 
