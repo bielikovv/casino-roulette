@@ -17,8 +17,9 @@
     <div class="row">
         <div id="user-profile-card">
             <div id="user-profile-background">
-
+                {% if request.user.profile.photo %}
                 <img id='user-profile-photo' src="{{ request.user.profile.photo.url }}">
+                {% endif %}
                 <div id="user-info">
                     <h5>{{ request.user.first_name }} {{ request.user.last_name }}</h5>
                     <h5>{{ request.user.profile.nickname }}</h5>
@@ -31,7 +32,7 @@
             </div>
         </div>
         <div id="user-profile-update-card">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form1.as_p }}
                 {{ form2.as_p }}

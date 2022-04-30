@@ -15,49 +15,49 @@ class ShowMainPage(View):
         global color
         global amount_value
         num = random.randint(1, 100)
-        current_balance = Profile.objects.get(user=request.user)
-
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            if 0 < num <= 2:
-                if color == 'GOLD':
-                    current_balance.balance += int(amount_value) * 50
-                    current_balance.save()
-                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*50, color=color)
+        if request.user.is_authenticated:
+            current_balance = Profile.objects.get(user=request.user)
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                if 0 < num <= 2:
+                    if color == 'GOLD':
+                        current_balance.balance += int(amount_value) * 50
+                        current_balance.save()
+                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*50, color=color)
+                        amount_value = 0
+                        return JsonResponse({'result': 'GOLD', 'after_bet_balance': current_balance.balance}, status=200)
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'GOLD', 'after_bet_balance': current_balance.balance}, status=200)
-                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                amount_value = 0
-                return JsonResponse({'result': 'GOLD', 'after_bet_balance': current_balance.balance}, status=200)
-            elif 2 < num <= 21:
-                if color == 'BLUE':
-                    current_balance.balance += int(amount_value) * 5
-                    current_balance.save()
-                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*5, color=color)
+                elif 2 < num <= 21:
+                    if color == 'BLUE':
+                        current_balance.balance += int(amount_value) * 5
+                        current_balance.save()
+                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*5, color=color)
+                        amount_value = 0
+                        return JsonResponse({'result': 'BLUE', 'after_bet_balance': current_balance.balance}, status=200)
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'BLUE', 'after_bet_balance': current_balance.balance}, status=200)
-                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                amount_value = 0
-                return JsonResponse({'result': 'BLUE', 'after_bet_balance': current_balance.balance}, status=200)
-            elif 21 < num <= 52:
-                if color == 'RED':
-                    current_balance.balance += int(amount_value) * 3
-                    current_balance.save()
-                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*3, color=color)
+                elif 21 < num <= 52:
+                    if color == 'RED':
+                        current_balance.balance += int(amount_value) * 3
+                        current_balance.save()
+                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*3, color=color)
+                        amount_value = 0
+                        return JsonResponse({'result': 'RED', 'after_bet_balance': current_balance.balance}, status=200)
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'RED', 'after_bet_balance': current_balance.balance}, status=200)
-                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                amount_value = 0
-                return JsonResponse({'result': 'RED', 'after_bet_balance': current_balance.balance}, status=200)
-            elif 52 < num <= 100:
-                if color == 'BLACK':
-                    current_balance.balance += int(amount_value) * 2
-                    current_balance.save()
-                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*2, color=color)
+                elif 52 < num <= 100:
+                    if color == 'BLACK':
+                        current_balance.balance += int(amount_value) * 2
+                        current_balance.save()
+                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*2, color=color)
+                        amount_value = 0
+                        return JsonResponse({'result': 'BLACK', 'after_bet_balance': current_balance.balance}, status=200)
+                    StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
                     amount_value = 0
                     return JsonResponse({'result': 'BLACK', 'after_bet_balance': current_balance.balance}, status=200)
-                StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                amount_value = 0
-                return JsonResponse({'result': 'BLACK', 'after_bet_balance': current_balance.balance}, status=200)
 
         return render(request, 'roulette/main_page.html')
 

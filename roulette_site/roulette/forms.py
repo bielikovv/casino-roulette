@@ -36,7 +36,7 @@ class RedactInfoUserForm(forms.ModelForm):
 
 class RedactInfoProfileForm(forms.ModelForm):
     photo = forms.ImageField(label='Photo', widget=forms.FileInput(attrs={'class': 'form-control form-control-sm'}))
-    nickname = forms.CharField(label='Singer nickname', widget=forms.TextInput(attrs={'class': 'form-control form-control-sm'}))
+    nickname = forms.CharField(label='Nickname', widget=forms.TextInput(attrs={'class': 'form-control form-control-sm'}))
 
     class Meta:
         model = Profile

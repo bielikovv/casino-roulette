@@ -7,6 +7,23 @@
     z-index: 999;
     font-family: 'Arvo', serif;
 }
+#login-card, #register-card{
+    font-family: 'Arvo', serif;
+    width: 55%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #292929;
+    color: #ffffff;
+    padding: 25px;
+}
+
+#reg, #log{
+    color: #E85A4F;
+}
+
+#reg:hover, #log:hover{
+    color: #EAE7DC;
+}
 
 body{
     background: #EAE7DC;
@@ -14,6 +31,10 @@ body{
 
 .navbar-brand{
     color: #E85A4F;
+}
+
+.navbar-brand:hover{
+    color: #EAE7DC;
 }
 
 #small-card-user-photo{
@@ -261,7 +282,6 @@ body{
     background-color: #D8C3A5;
     color: #E85A4F;
     padding: 40px;
-    position: relative;
     font-family: 'Arvo', serif;
 }
 #user-info{
@@ -307,6 +327,8 @@ body{
     color: #ffffff;
     padding: 25px;
     display: none;
+    font-family: 'Arvo', serif;
+
 }
 
 #statistic-card{
