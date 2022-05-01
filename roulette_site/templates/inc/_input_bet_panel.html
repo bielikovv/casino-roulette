@@ -1,0 +1,21 @@
+<div id="input-bet-value-card">
+    <div id="balance">
+        Balance: {{ request.user.profile.balance }}₴
+    </div>
+    <h4>Enter bet amount:</h4>
+    <input type="text" id="input-bet-value" name="amount-value" class="form-control form-control-sm">
+    <div id="buttons-control-input">
+        <div id="upper-control">
+            <button type="button" id="half-btn" class="btn btn-primary btn-sm">½</button>
+            <button type="button" id="multi-double-btn" class="btn btn-primary btn-sm">2×</button>
+            <button type="button" id="add-hundred-btn" class="btn btn-primary btn-sm">+100</button>
+            <button type="button" id="add-thousand-btn" class="btn btn-primary btn-sm">+1K</button>
+            <button type="button" id="add-ten-thousand-btn" class="btn btn-primary btn-sm">+10K</button>
+            <button type="button" id="add-hundred-thousand-btn" class="btn btn-primary btn-sm">+100K</button>
+        </div>
+        <div id="lower-control">
+            <button type="button" id="max-btn" class="btn btn-primary btn-sm">MAX</button>
+            <button type="button" id="c-btn" class="btn btn-primary btn-sm">C</button>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
 
 .navbar{
-    background-color: #D8C3A5;
+    background-color: #292929;
     margin-bottom: 50px;
     position: relative;
     z-index: 999;
@@ -26,7 +26,7 @@
 }
 
 body{
-    background: #EAE7DC;
+    background: #262626;
 }
 
 .navbar-brand{
@@ -34,7 +34,7 @@ body{
 }
 
 .navbar-brand:hover{
-    color: #EAE7DC;
+    color: #ffffff;
 }
 
 #small-card-user-photo{
@@ -52,7 +52,7 @@ body{
 }
 
 #nav-balance-card{
-    background-color: #EAE7DC;
+    background-color: #303030;
     padding: 5px;
     text-align: center;
     display: inline-block;
@@ -86,7 +86,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
     margin-right: 60px;
-    background-color: #EAE7DC;
+    background-color: #303030;
 }
 
 .dropdown-menu{
@@ -105,7 +105,7 @@ body{
 }
 
 #buttons-control-input{
-    background-color: #EAE7DC;
+    background-color: #303030;
     padding: 10px;
     margin-top: 10px;
     text-align: center;
@@ -128,7 +128,7 @@ body{
 
 #bet-block-card{
     width: 35%;
-    background-color: #D8C3A5;
+    background-color: #292929;
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
@@ -137,7 +137,7 @@ body{
 
 #black-block-header{
     width: 100%;
-    background-color: #EAE7DC ;
+    background-color: #303030;
     color: #1b1b1b;
     border: 3px solid #1b1b1b;
     padding: 10px;
@@ -157,13 +157,13 @@ body{
     width: 100%;
     margin-top: 30px;
     text-align: center;
-    background-color: #D8C3A5;
+    background-color: #292929;
     padding: 30px;
 }
 
 #red-block-header{
     width: 100%;
-    background-color: #EAE7DC;
+    background-color: #303030;
     color: #ba2121;
     border: 3px solid #ba2121;
     padding: 10px;
@@ -180,7 +180,7 @@ body{
 }
 #blue-block-header{
     width: 100%;
-    background-color: #EAE7DC;
+    background-color: #303030;
     color: #4ac1f7;
     border: 3px solid #4ac1f7;
     padding: 10px;
@@ -199,15 +199,28 @@ body{
 #random{
     color: #ffffff;
     text-align: center;
-    font-size: 100px;
+    font-size: 80px;
     margin-top: auto;
     margin-bottom: auto;
     font-family: 'Arvo', serif;
 }
 
+.dropdown-menu{
+    background-color: #303030;
+}
+
+.dropdown-item{
+    color: #E85A4F;
+}
+
+.dropdown-item:hover{
+    background-color: #303030;
+    color: #ffffff;
+}
+
 #gold-block-header{
     width: 100%;
-    background-color: #EAE7DC;
+    background-color: #303030;
     color: #f5dd5d;
     border: 3px solid #f5dd5d;
     padding: 10px;
@@ -225,7 +238,7 @@ body{
 
 #input-bet-value-card{
     width: 100%;
-    background-color: #D8C3A5;
+    background-color: #292929;
     height: 120px;
     padding: 15px;
     margin-bottom: 10px;
@@ -280,7 +293,7 @@ body{
 
 #user-profile-card{
     width: 100%;
-    background-color: #D8C3A5;
+    background-color: #292929;
     color: #E85A4F;
     padding: 40px;
     font-family: 'Arvo', serif;
@@ -331,36 +344,71 @@ body{
     font-family: 'Arvo', serif;
 
 }
+#user-profile-send-money-card{
+    position: fixed;
+    background-color: #292929;
+    width: 50%;
+    text-align: center;
+    margin-left: 270px;
+    color: #ffffff;
+    padding: 25px;
+    display: none;
+    font-family: 'Arvo', serif;
+}
+
+#last-bet-color{
+    width: 60%;
+    display: inline-block;
+}
+#last-bet-value, #last-win-value{
+    width: 18%;
+    display: inline-block;
+}
+
+#last-bets-card{
+    width: 100%;
+    background-color: #303030;
+    padding: 25px;
+}
+
+#last-bet-table{
+    background-color: #E85A4F;
+    margin-bottom: 10px;
+    color: #ffffff;
+    padding: 10px;
+}
 
 #statistic-card{
     width: 100%;
-    background-color: #D8C3A5;
+    background-color: #292929;
     margin-top: 25px;
-    color: #EAE7DC;
+    color: #ffffff;
     padding: 25px;
     font-family: 'Arvo', serif;
 }
 
 #statistic-card-info{
-    background-color: #EAE7DC;
+    background-color: #303030;
     padding: 25px;
 }
 
 #all-bets-table{
-    background-color: #D8C3A5;
+    background-color: #303030;
+    color: #ffffff;
     padding: 20px;
     margin-bottom: 10px;
 }
 
 #all-wins-table{
-    background-color: #D8C3A5;
+    background-color: #303030;
+    color: #ffffff;
     padding: 20px;
 
 }
 #user-profile-background{
     width: 100%;
     padding: 10px;
-    background-color: #EAE7DC;
+    background-color: #303030;
 }
 
 #user-profile-photo{
