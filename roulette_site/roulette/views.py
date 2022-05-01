@@ -6,6 +6,7 @@ from .models import *
 from .forms import *
 import random
 from django.http import JsonResponse
+from .utils import *
 
 
 class ShowMainPage(View):
@@ -16,57 +17,35 @@ class ShowMainPage(View):
         global amount_value
         num = random.randint(1, 100)
         if request.user.is_authenticated:
-            current_balance = Profile.objects.get(user=request.user)
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 if 0 < num <= 2:
                     if color == 'GOLD':
-                        current_balance.balance += int(amount_value) * 50
-                        current_balance.save()
-                        if amount_value != 0:
-                            StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value)*50, color=color)
-                            amount_value = 0
-                        return JsonResponse({'result': 'GOLD', 'after_bet_balance': current_balance.balance}, status=200)
-                    if amount_value != 0:
-                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                        amount_value = 0
-                    return JsonResponse({'result': 'GOLD', 'after_bet_balance': current_balance.balance}, status=200)
+                        multiply_win_value(request, amount_value, 50)
+                        save_win_bet(request, amount_value, 50, color)
+                        return JsonResponse({'result': 'GOLD', 'after_bet_balance': get_balance(request)}, status=200)
+                    save_loss_bet(request, amount_value, color)
+                    return JsonResponse({'result': 'GOLD', 'after_bet_balance': get_balance(request)}, status=200)
                 elif 2 < num <= 21:
                     if color == 'BLUE':
-                        current_balance.balance += int(amount_value) * 5
-                        current_balance.save()
-                        if amount_value != 0:
-                            StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value) * 5, color=color)
-                            amount_value = 0
-                        return JsonResponse({'result': 'BLUE', 'after_bet_balance': current_balance.balance}, status=200)
-                    if amount_value != 0:
-                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                        amount_value = 0
-                    return JsonResponse({'result': 'BLUE', 'after_bet_balance': current_balance.balance}, status=200)
+                        multiply_win_value(request, amount_value, 5)
+                        save_win_bet(request, amount_value, 5, color)
+                        return JsonResponse({'result': 'BLUE', 'after_bet_balance': get_balance(request)}, status=200)
+                    save_loss_bet(request, amount_value, color)
+                    return JsonResponse({'result': 'BLUE', 'after_bet_balance': get_balance(request)}, status=200)
                 elif 21 < num <= 52:
                     if color == 'RED':
-                        current_balance.balance += int(amount_value) * 3
-                        current_balance.save()
-                        if amount_value != 0:
-                            StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value) * 3, color=color)
-                            amount_value = 0
-                        return JsonResponse({'result': 'RED', 'after_bet_balance': current_balance.balance}, status=200)
-                    if amount_value != 0:
-                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                        amount_value = 0
-                    return JsonResponse({'result': 'RED', 'after_bet_balance': current_balance.balance}, status=200)
+                        multiply_win_value(request, amount_value, 3)
+                        save_win_bet(request, amount_value, 3, color)
+                        return JsonResponse({'result': 'RED', 'after_bet_balance': get_balance(request)}, status=200)
+                    save_loss_bet(request, amount_value, color)
+                    return JsonResponse({'result': 'RED', 'after_bet_balance': get_balance(request)}, status=200)
                 elif 52 < num <= 100:
                     if color == 'BLACK':
-                        current_balance.balance += int(amount_value) * 2
-                        current_balance.save()
-                        if amount_value != 0:
-                            StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value) * 2, color=color)
-                            amount_value = 0
-                        return JsonResponse({'result': 'BLACK', 'after_bet_balance': current_balance.balance}, status=200)
-                    if amount_value != 0:
-                        StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-                        amount_value = 0
-                    return JsonResponse({'result': 'BLACK', 'after_bet_balance': current_balance.balance}, status=200)
-
+                        multiply_win_value(request, amount_value, 2)
+                        save_win_bet(request, amount_value, 2, color)
+                        return JsonResponse({'result': 'BLACK', 'after_bet_balance': get_balance(request)}, status=200)
+                    save_loss_bet(request, amount_value, color)
+                    return JsonResponse({'result': 'BLACK', 'after_bet_balance': get_balance(request)}, status=200)
         return render(request, 'roulette/main_page.html')
 
 
@@ -76,12 +55,8 @@ class ShowMainPage(View):
         amount_value = request.POST.get('amount_value')
         global color
         color = request.POST.get('color')
-
-        current_balance = Profile.objects.get(user=request.user)
-        current_balance.balance -= int(amount_value)
-        current_balance.save()
-
-        return JsonResponse({"new_balance": current_balance.balance, "amount_value":amount_value}, status=200)
+        balance_control_after_bet(request, amount_value)
+        return JsonResponse({"new_balance": get_balance(request), "amount_value":amount_value}, status=200)
     modify()
 
 
@@ -90,31 +65,11 @@ def show_user_profile(request):
     last_bets = StatisticRouletteUser.objects.filter(user=request.user).order_by("-time")[:10]
     token_recipient = request.POST.get('token')
     value_recipient = request.POST.get('value')
-    current_balance = Profile.objects.get(user=request.user)
     if token_recipient:
-        current_balance_recipient = Profile.objects.get(token=token_recipient)
-        current_balance_recipient.balance += int(value_recipient)
-        current_balance_recipient.save()
-        current_balance.balance -= int(value_recipient)
-        current_balance.save()
-        TransferTransactions.objects.create(sender=request.user.profile.nickname, recipient=current_balance_recipient.nickname, value=int(value_recipient))
-        return JsonResponse({"new_balance": current_balance.balance, "value_recipient":value_recipient, "recipient_name":current_balance_recipient.nickname,})
+        send_to_other_user(request, token_recipient, value_recipient)
+        return JsonResponse({"new_balance": get_balance(request), "value_recipient":value_recipient, "recipient_name":get_recipient_nickname(token_recipient),})
 
-    chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-    password = ''
-    for i in range(31):
-        password += random.choice(chars)
-    token = Profile.objects.get(user=request.user)
-    if token.token == None:
-        token.token = password
-        token.save()
-    statistic = StatisticRouletteUser.objects.filter(user=request.user)
-    all_bets_value = 0
-    all_wins_value = 0
-    for item in statistic:
-        all_bets_value += item.bet_value
-        if item.win_value != None:
-            all_wins_value += int(item.win_value)
+    generate_and_save_token(request)
     if request.method == 'POST':
         form1 = RedactInfoUserForm(request.POST, instance=request.user)
         form2 = RedactInfoProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -125,7 +80,7 @@ def show_user_profile(request):
     else:
         form1 = RedactInfoUserForm(instance=request.user)
         form2 = RedactInfoProfileForm(instance=request.user.profile)
-    return render(request, 'roulette/user_profile.html', {'form1': form1, 'form2': form2, 'all_bets_value':all_bets_value, 'all_wins_value': all_wins_value, 'last_bets': last_bets})
+    return render(request, 'roulette/user_profile.html', {'form1': form1, 'form2': form2, 'all_bets_value':get_all_bets(request), 'all_wins_value': get_all_wins(request), 'last_bets': last_bets})
 
 
 

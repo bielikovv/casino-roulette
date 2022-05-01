@@ -34,7 +34,7 @@ body{
 }
 
 .navbar-brand:hover{
-    color: #EAE7DC;
+    color: #ffffff;
 }
 
 #small-card-user-photo{
@@ -213,6 +213,11 @@ body{
     color: #E85A4F;
 }
 
+.dropdown-item:hover{
+    background-color: #303030;
+    color: #ffffff;
+}
+
 #gold-block-header{
     width: 100%;
     background-color: #303030;
@@ -377,7 +382,7 @@ body{
     width: 100%;
     background-color: #292929;
     margin-top: 25px;
-    color: #EAE7DC;
+    color: #ffffff;
     padding: 25px;
     font-family: 'Arvo', serif;
 }

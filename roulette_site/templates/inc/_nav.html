@@ -41,16 +41,17 @@
 
 
 <script>
-  document.getElementById('card-user').onclick = function () {
-    let el = document.getElementById('dropdown-menu');
-    if (el.style.display == 'none'){
-      document.getElementById('dropdown-menu').style.display = 'block';
-    }
-    else{
-      document.getElementById('dropdown-menu').style.display = 'none';
-    }
-
-  };
+  $(document).ready(function () {
+    document.getElementById('card-user').onclick = function () {
+      let el = document.getElementById('dropdown-menu');
+      if (el.style.display == 'none'){
+        document.getElementById('dropdown-menu').style.display = 'block';
+      }
+      else{
+        document.getElementById('dropdown-menu').style.display = 'none';
+      }
+    };
+  })
 
 
 
