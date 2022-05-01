@@ -24,31 +24,39 @@
             let token = $('input[name=input-token]').val();
             let val = $('input[name=input-send-value]').val();
             let bal = document.getElementById('nav-balance').innerText.replace('₴', '');
-            if (Number(val) > 0) {
-                if (Number(val) <= Number(bal)) {
-                    $.ajax({
-                        url: '{% url "profile" %}',
-                        type: 'post',
-                        data: {
-                            token: token,
-                            value: val,
-                            csrfmiddlewaretoken: csrf,
-                        },
-                        success: function (response) {
-                            document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
-                            document.getElementById('send-result').innerHTML = '';
-                            document.getElementById('send-result').append(response.value_recipient + '₴' + ' sent to ' + response.recipient_name);
+            let my_token = document.getElementById('my-token').innerText.replace('User token: ', '');
+            if (token != my_token) {
+                if (Number(val) > 0) {
+                    if (Number(val) <= Number(bal)) {
+                        $.ajax({
+                            url: '{% url "profile" %}',
+                            type: 'post',
+                            data: {
+                                token: token,
+                                value: val,
+                                csrfmiddlewaretoken: csrf,
+                            },
+                            success: function (response) {
+                                document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                                document.getElementById('send-result').innerHTML = '';
+                                document.getElementById('send-result').append(response.value_recipient + '₴' + ' sent to ' + response.recipient_name);
 
-                        }
-                    });
-                } else{
+                            }
+                        });
+                    } else {
+                        document.getElementById('send-result').innerHTML = '';
+                        document.getElementById('send-result').append('ERROR: You don`t have enough to send!');
+                    }
+                    ;
+                } else {
                     document.getElementById('send-result').innerHTML = '';
-                    document.getElementById('send-result').append('ERROR: You don`t have enough to send!');
+                    document.getElementById('send-result').append('ERROR: Send value cannot be negative!');
                 };
+
             } else{
                 document.getElementById('send-result').innerHTML = '';
-                document.getElementById('send-result').append('ERROR: Send value cannot be negative!');
-            };
+                document.getElementById('send-result').append('ERROR: You cannot send yourself!');
+            }
         })
     });
 </script>
@@ -64,7 +72,7 @@
                 {% endif %}
                 <div id="user-info">
                     <h5>{{ request.user.first_name }} {{ request.user.last_name }}</h5>
-                    <h5>User token: {{ request.user.profile.token }}</h5>
+                    <h5 id="my-token">User token: {{ request.user.profile.token }}</h5>
                     <h5>Nickname: {{ request.user.profile.nickname }}</h5>
                     <h5>Email: {{ request.user.email }}</h5>
 
@@ -76,7 +84,7 @@
             </div>
         </div>
         <div id="user-profile-send-money-card">
-        {% csrf_token %}
+            {% csrf_token %}
             <div id="send-money-inputs">
                 <h5>User token: </h5>
                 <input type="text" class="form-control form-control-sm" id="input-user-token" name="input-token">
@@ -104,6 +112,22 @@
             <div id="statistic-card-info">
                 <div id="all-bets-table"><h5>Bets for all time: {{ all_bets_value }}₴</h5></div>
                 <div id="all-wins-table"><h5>Wins for all time: {{ all_wins_value }}₴</h5></div>
+            </div>
+            <h3>Last 10 bets:</h3>
+            <div id="last-bets-card">
+                {% for item in last_bets %}
+                <div id="last-bet-table">
+                    <div id="last-bet-color">{{ item.color }}</div>
+                    <div id="last-bet-value">BET: {{ item.bet_value }}₴</div>
+                    <div id="last-win-value">
+                        {% if item.win_value %}
+                        <div id="win" style="color: #00ff00">WIN: {{ item.win_value }}₴</div>
+                        {% else %}
+                        <div id="loss" style="color: #ba2121">LOSS</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

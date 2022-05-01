@@ -33,6 +33,7 @@ class StatisticRouletteUser(models.Model):
     bet_value = models.IntegerField(verbose_name='Bet value', null=True)
     win_value = models.IntegerField(verbose_name='Win value', null=True)
     color = models.CharField(max_length=30, verbose_name='Bet color', null=True)
+    time = models.DateTimeField(verbose_name='Time', auto_now_add=True, null=True)
 
 
 
