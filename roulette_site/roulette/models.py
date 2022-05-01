@@ -42,6 +42,16 @@ class Profile(models.Model):
     balance = models.IntegerField(verbose_name='Balance', default=0)
     nickname = models.CharField(verbose_name='Nickname', max_length=64)
     photo = models.ImageField(verbose_name='Photo', upload_to='photo/%Y/%m/%d')
+    token = models.CharField(verbose_name='User token', max_length=32, null=True)
+
+
+
+class TransferTransactions(models.Model):
+    time = models.DateTimeField(auto_now_add=True, verbose_name='Time', null=True)
+    sender = models.CharField(max_length=255, verbose_name='Sender name')
+    recipient = models.CharField(max_length=255, verbose_name='Recipient name')
+    value = models.IntegerField(verbose_name='Value of transfer')
+
 
 
 @receiver(post_save, sender=User)

@@ -9,6 +9,48 @@
     function hideUpdateForm() {
         document.getElementById('user-profile-update-card').style.display = 'none';
     }
+
+    function showSendMoney() {
+        document.getElementById('user-profile-send-money-card').style.display = 'block';
+    }
+
+    function hideSendMoney() {
+        document.getElementById('user-profile-send-money-card').style.display = 'none';
+    }
+
+    $(document).ready(function () {
+        $('#send-money-btn').click(function () {
+            var csrf = $('input[name=csrfmiddlewaretoken]').val();
+            let token = $('input[name=input-token]').val();
+            let val = $('input[name=input-send-value]').val();
+            let bal = document.getElementById('nav-balance').innerText.replace('₴', '');
+            if (Number(val) > 0) {
+                if (Number(val) <= Number(bal)) {
+                    $.ajax({
+                        url: '{% url "profile" %}',
+                        type: 'post',
+                        data: {
+                            token: token,
+                            value: val,
+                            csrfmiddlewaretoken: csrf,
+                        },
+                        success: function (response) {
+                            document.getElementById('nav-balance').innerHTML = response.new_balance + '₴';
+                            document.getElementById('send-result').innerHTML = '';
+                            document.getElementById('send-result').append(response.value_recipient + '₴' + ' sent to ' + response.recipient_name);
+
+                        }
+                    });
+                } else{
+                    document.getElementById('send-result').innerHTML = '';
+                    document.getElementById('send-result').append('ERROR: You don`t have enough to send!');
+                };
+            } else{
+                document.getElementById('send-result').innerHTML = '';
+                document.getElementById('send-result').append('ERROR: Send value cannot be negative!');
+            };
+        })
+    });
 </script>
 
 
@@ -22,14 +64,30 @@
                 {% endif %}
                 <div id="user-info">
                     <h5>{{ request.user.first_name }} {{ request.user.last_name }}</h5>
-                    <h5>{{ request.user.profile.nickname }}</h5>
-                    <h5>{{ request.user.email }}</h5>
+                    <h5>User token: {{ request.user.profile.token }}</h5>
+                    <h5>Nickname: {{ request.user.profile.nickname }}</h5>
+                    <h5>Email: {{ request.user.email }}</h5>
+
                 </div>
                 <div id="help-pannel">
                     <button type="button" id='show-update-form-btn' onclick="showUpdateForm()" class="btn btn-primary btn-sm">Edit profile</button>
-                    <button type="button" class="btn btn-primary btn-sm">Send money</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="showSendMoney()">Send money</button>
                 </div>
             </div>
+        </div>
+        <div id="user-profile-send-money-card">
+        {% csrf_token %}
+            <div id="send-money-inputs">
+                <h5>User token: </h5>
+                <input type="text" class="form-control form-control-sm" id="input-user-token" name="input-token">
+                <h5>Value: </h5>
+                <input type="text" class="form-control form-control-sm" id="input-send-value" name="input-send-value">
+                <div id="send-result">
+
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="send-money-btn">Send</button>
+            <button type="button" onclick="hideSendMoney()" class="btn btn-primary">Back</button>
         </div>
         <div id="user-profile-update-card">
             <form method="post" enctype="multipart/form-data">

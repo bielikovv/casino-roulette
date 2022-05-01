@@ -79,6 +79,26 @@ class ShowMainPage(View):
 
 
 def show_user_profile(request):
+    token_recipient = request.POST.get('token')
+    value_recipient = request.POST.get('value')
+    current_balance = Profile.objects.get(user=request.user)
+    if token_recipient:
+        current_balance_recipient = Profile.objects.get(token=token_recipient)
+        current_balance_recipient.balance += int(value_recipient)
+        current_balance_recipient.save()
+        current_balance.balance -= int(value_recipient)
+        current_balance.save()
+        TransferTransactions.objects.create(sender=request.user.profile.nickname, recipient=current_balance_recipient.nickname, value=int(value_recipient))
+        return JsonResponse({"new_balance": current_balance.balance, "value_recipient":value_recipient, "recipient_name":current_balance_recipient.nickname,})
+
+    chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    password = ''
+    for i in range(31):
+        password += random.choice(chars)
+    token = Profile.objects.get(user=request.user)
+    if token.token == None:
+        token.token = password
+        token.save()
     statistic = StatisticRouletteUser.objects.filter(user=request.user)
     all_bets_value = 0
     all_wins_value = 0
@@ -101,6 +121,7 @@ def show_user_profile(request):
 
 
 def register(request):
+
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():

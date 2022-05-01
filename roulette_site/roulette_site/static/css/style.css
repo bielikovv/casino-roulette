@@ -199,7 +199,7 @@ body{
 #random{
     color: #ffffff;
     text-align: center;
-    font-size: 100px;
+    font-size: 80px;
     margin-top: auto;
     margin-bottom: auto;
     font-family: 'Arvo', serif;
@@ -330,6 +330,17 @@ body{
     display: none;
     font-family: 'Arvo', serif;
 
+}
+#user-profile-send-money-card{
+    position: absolute;
+    background-color: #292929;
+    width: 50%;
+    text-align: center;
+    margin-left: 270px;
+    color: #ffffff;
+    padding: 25px;
+    display: none;
+    font-family: 'Arvo', serif;
 }
 
 #statistic-card{
