@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
+
+.navbar{
+    background-color: #D8C3A5;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 999;
+    font-family: 'Arvo', serif;
+}
+#login-card, #register-card{
+    font-family: 'Arvo', serif;
+    width: 55%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #292929;
+    color: #ffffff;
+    padding: 25px;
+}
+
+#reg, #log{
+    color: #E85A4F;
+}
+
+#reg:hover, #log:hover{
+    color: #EAE7DC;
+}
+
+body{
+    background: #EAE7DC;
+}
+
+.navbar-brand{
+    color: #E85A4F;
+}
+
+.navbar-brand:hover{
+    color: #EAE7DC;
+}
+
+#small-card-user-photo{
+    object-fit: cover;
+    width: 25px;
+    height: 25px;
+    border-radius: 25%;
+    margin-right: 10px;
+    margin-bottom: 2px;
+}
+
+#nickname-card-user{
+    display: inline-block;
+    margin-top: 3px;
+}
+
+#nav-balance-card{
+    background-color: #EAE7DC;
+    padding: 5px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+#nav-buttons{
+    padding: 5px;
+    display: inline-block;
+}
+#nav-balance{
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 2px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#card-user{
+    color: #E85A4F;
+
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 60px;
+    background-color: #EAE7DC;
+}
+
+.dropdown-menu{
+    background-color: #ffffff;
+    display: none;
+
+
+}
+
+#roulette-window-pannel{
+    width: 60%;
+    height: 350px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #1b1b1b;
+}
+
+#buttons-control-input{
+    background-color: #EAE7DC;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+#max-btn{
+    width: 48%;
+}
+#c-btn{
+    width: 48%;
+}
+#half-btn, #multi-double-btn, #add-hundred-btn, #add-thousand-btn, #add-ten-thousand-btn, #add-hundred-thousand-btn{
+    width: 15.25%;
+}
+
+#upper-control{
+    margin-bottom: 5px;
+}
+
+
+#bet-block-card{
+    width: 35%;
+    background-color: #D8C3A5;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+
+}
+
+#black-block-header{
+    width: 100%;
+    background-color: #EAE7DC ;
+    color: #1b1b1b;
+    border: 3px solid #1b1b1b;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.10s ease-out;
+    font-family: 'Arvo', serif;
+}
+
+#black-block-header:hover{
+    background-color: #1b1b1b;
+    color: #ffffff;
+}
+
+#bet-pannel{
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+    background-color: #D8C3A5;
+    padding: 30px;
+}
+
+#red-block-header{
+    width: 100%;
+    background-color: #EAE7DC;
+    color: #ba2121;
+    border: 3px solid #ba2121;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    -webkit-transition: 0.10s ease-out;
+    cursor: pointer;
+    font-family: 'Arvo', serif;
+}
+
+#red-block-header:hover{
+    background-color: #ba2121;
+    color: #ffffff;
+}
+#blue-block-header{
+    width: 100%;
+    background-color: #EAE7DC;
+    color: #4ac1f7;
+    border: 3px solid #4ac1f7;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    -webkit-transition: 0.10s ease-out;
+    cursor: pointer;
+    font-family: 'Arvo', serif;
+}
+
+#blue-block-header:hover{
+    background-color: #4ac1f7;
+    color: #ffffff;
+}
+
+#random{
+    color: #ffffff;
+    text-align: center;
+    font-size: 100px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: 'Arvo', serif;
+}
+
+#gold-block-header{
+    width: 100%;
+    background-color: #EAE7DC;
+    color: #f5dd5d;
+    border: 3px solid #f5dd5d;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    -webkit-transition: 0.10s ease-out;
+    cursor: pointer;
+    font-family: 'Arvo', serif;
+}
+
+#gold-block-header:hover{
+    background-color: #f5dd5d;
+    color: #ffffff;
+}
+
+#input-bet-value-card{
+    width: 100%;
+    background-color: #D8C3A5;
+    height: 120px;
+    padding: 15px;
+    margin-bottom: 10px;
+    color: #E85A4F;
+    font-family: 'Arvo', serif;
+}
+
+.form-control{
+    border-radius: 0px;
+}
+#balance{
+    display: inline-block;
+}
+
+#black-block{
+    display: inline-block;
+    width: 20%;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #EAE7DC;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+}
+
+#red-block{
+    display: inline-block;
+    width: 20%;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+}
+
+
+#blue-block{
+    display: inline-block;
+    width: 20%;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+}
+
+#gold-block{
+    display: inline-block;
+    width: 20%;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.54);
+}
+
+#user-profile-card{
+    width: 100%;
+    background-color: #D8C3A5;
+    color: #E85A4F;
+    padding: 40px;
+    font-family: 'Arvo', serif;
+}
+#user-info{
+    margin-left: 20px;
+    display: inline-block;
+    position: absolute;
+    margin-top: 40px;
+
+}
+.btn-primary{
+    background-color: #E85A4F;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
+
+.btn-primary:hover{
+    background-color: #404040;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
+
+.btn-primary:focus{
+    background-color: #404040;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
+.btn-primary:active{
+    background-color: #404040;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 2px;
+}
+
+#user-profile-update-card{
+    position: absolute;
+    background-color: #292929;
+    width: 50%;
+    text-align: center;
+    margin-left: 270px;
+    color: #ffffff;
+    padding: 25px;
+    display: none;
+    font-family: 'Arvo', serif;
+
+}
+
+#statistic-card{
+    width: 100%;
+    background-color: #D8C3A5;
+    margin-top: 25px;
+    color: #EAE7DC;
+    padding: 25px;
+    font-family: 'Arvo', serif;
+}
+
+#statistic-card-info{
+    background-color: #EAE7DC;
+    padding: 25px;
+}
+
+#all-bets-table{
+    background-color: #D8C3A5;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+#all-wins-table{
+    background-color: #D8C3A5;
+    padding: 20px;
+
+}
+#user-profile-background{
+    width: 100%;
+    padding: 10px;
+    background-color: #EAE7DC;
+}
+
+#user-profile-photo{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 15px;
+
+}
+
+
+
+
+
+
+
