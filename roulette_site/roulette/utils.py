@@ -4,26 +4,27 @@ from .models import *
 
 
 def save_win_bet(request, amount_value, multiply_value, color):
-    if amount_value != 0:
+    if amount_value != None:
         StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, win_value=int(amount_value) * multiply_value, color=color)
-        amount_value = 0
-        return amount_value
+        return None
+
 
 
 
 def save_loss_bet(request, amount_value, color):
-    if amount_value != 0:
+    if amount_value != None:
         StatisticRouletteUser.objects.create(user=request.user, bet_value=amount_value, color=color)
-        amount_value = 0
-        return amount_value
+        return None
+
 
 
 
 def multiply_win_value(request, amount_value, multiply_value):
-    current_balance = Profile.objects.get(user=request.user)
-    current_balance.balance += int(amount_value) * multiply_value
-    current_balance.save()
-    return current_balance.balance
+    if amount_value:
+        current_balance = Profile.objects.get(user=request.user)
+        current_balance.balance += int(amount_value) * multiply_value
+        current_balance.save()
+        return current_balance.balance
 
 
 

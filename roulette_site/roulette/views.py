@@ -21,30 +21,30 @@ class ShowMainPage(View):
                 if 0 < num <= 2:
                     if color == 'GOLD':
                         multiply_win_value(request, amount_value, 50)
-                        save_win_bet(request, amount_value, 50, color)
+                        amount_value = save_win_bet(request, amount_value, 50, color)
                         return JsonResponse({'result': 'GOLD', 'after_bet_balance': get_balance(request)}, status=200)
-                    save_loss_bet(request, amount_value, color)
+                    amount_value = save_loss_bet(request, amount_value, color)
                     return JsonResponse({'result': 'GOLD', 'after_bet_balance': get_balance(request)}, status=200)
                 elif 2 < num <= 21:
                     if color == 'BLUE':
                         multiply_win_value(request, amount_value, 5)
-                        save_win_bet(request, amount_value, 5, color)
+                        amount_value = save_win_bet(request, amount_value, 5, color)
                         return JsonResponse({'result': 'BLUE', 'after_bet_balance': get_balance(request)}, status=200)
-                    save_loss_bet(request, amount_value, color)
+                    amount_value = save_loss_bet(request, amount_value, color)
                     return JsonResponse({'result': 'BLUE', 'after_bet_balance': get_balance(request)}, status=200)
                 elif 21 < num <= 52:
                     if color == 'RED':
                         multiply_win_value(request, amount_value, 3)
-                        save_win_bet(request, amount_value, 3, color)
+                        amount_value = save_win_bet(request, amount_value, 3, color)
                         return JsonResponse({'result': 'RED', 'after_bet_balance': get_balance(request)}, status=200)
-                    save_loss_bet(request, amount_value, color)
+                    amount_value = save_loss_bet(request, amount_value, color)
                     return JsonResponse({'result': 'RED', 'after_bet_balance': get_balance(request)}, status=200)
                 elif 52 < num <= 100:
                     if color == 'BLACK':
                         multiply_win_value(request, amount_value, 2)
-                        save_win_bet(request, amount_value, 2, color)
+                        amount_value = save_win_bet(request, amount_value, 2, color)
                         return JsonResponse({'result': 'BLACK', 'after_bet_balance': get_balance(request)}, status=200)
-                    save_loss_bet(request, amount_value, color)
+                    amount_value = save_loss_bet(request, amount_value, color)
                     return JsonResponse({'result': 'BLACK', 'after_bet_balance': get_balance(request)}, status=200)
         return render(request, 'roulette/main_page.html')
 
@@ -80,7 +80,7 @@ def show_user_profile(request):
     else:
         form1 = RedactInfoUserForm(instance=request.user)
         form2 = RedactInfoProfileForm(instance=request.user.profile)
-    return render(request, 'roulette/user_profile.html', {'form1': form1, 'form2': form2, 'all_bets_value':get_all_bets(request), 'all_wins_value': get_all_wins(request), 'last_bets': last_bets})
+    return render(request, 'roulette/user_profile.html', {'form1': form1, 'form2': form2, 'all_bets_value': get_all_bets(request), 'all_wins_value': get_all_wins(request), 'last_bets': last_bets})
 
 
 
