@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'roulette',
-        'USER': 'root',
-        'PASSWORD': 'vitrum15',
+        'USER': 'empty',
+        'PASSWORD': 'empty',
         'HOST': 'localhost',
     }
 }
