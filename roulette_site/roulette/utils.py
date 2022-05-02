@@ -34,9 +34,19 @@ def get_balance(request):
 
 
 def balance_control_after_bet(request, amount_value):
-    current_balance = Profile.objects.get(user=request.user)
-    current_balance.balance -= int(amount_value)
-    current_balance.save()
+    if amount_value != None:
+        current_balance = Profile.objects.get(user=request.user)
+        current_balance.balance -= int(amount_value)
+        current_balance.save()
+
+
+
+def get_balance_before_get(request, amount_value):
+    if amount_value != None:
+        current_balance = Profile.objects.get(user=request.user)
+        current_balance.balance -= int(amount_value)
+        balance = current_balance.balance
+        return balance
 
 
 def generate_and_save_token(request):

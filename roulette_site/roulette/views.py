@@ -18,6 +18,7 @@ class ShowMainPage(View):
         num = random.randint(1, 100)
         if request.user.is_authenticated:
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                balance_control_after_bet(request, amount_value)
                 if 0 < num <= 2:
                     if color == 'GOLD':
                         multiply_win_value(request, amount_value, 50)
@@ -55,8 +56,7 @@ class ShowMainPage(View):
         amount_value = request.POST.get('amount_value')
         global color
         color = request.POST.get('color')
-        balance_control_after_bet(request, amount_value)
-        return JsonResponse({"new_balance": get_balance(request), "amount_value":amount_value}, status=200)
+        return JsonResponse({"new_balance": get_balance_before_get(request, amount_value), "amount_value":amount_value}, status=200)
     modify()
 
 
@@ -85,7 +85,6 @@ def show_user_profile(request):
 
 
 def register(request):
-
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
