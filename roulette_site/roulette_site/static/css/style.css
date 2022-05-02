@@ -2,7 +2,7 @@
 
 .navbar{
     background-color: #292929;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
     position: relative;
     z-index: 999;
     font-family: 'Arvo', serif;
@@ -369,6 +369,24 @@ body{
     width: 100%;
     background-color: #303030;
     padding: 25px;
+}
+
+#last-bets-panel{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+}
+#last-bet-main-page-table{
+    display: inline-block;
+    height: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 22.5%;
+    background-color: #292929;
+    padding: 5px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 2px;
 }
 
 #last-bet-table{

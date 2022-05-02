@@ -164,7 +164,21 @@
 </script>
 
 
-
+<div id="last-bets-panel">
+    {% for item in last_bets %}
+    <div id="last-bet-main-page-table">
+        <div id="last-bet-main-color">{{ item.user.profile.nickname}} - {{ item.color }}</div>
+        <div id="last-bet-main-value">BET: {{ item.bet_value }}₴</div>
+        <div id="last-win-main-value">
+            {% if item.win_value %}
+            <div id="win-main" style="color: #00ff00">WIN: {{ item.win_value }}₴</div>
+            {% else %}
+            <div id="loss-main" style="color: #ba2121">LOSS</div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
 <div class="container">
     <div class="row">
         <div id="bet-block-card">

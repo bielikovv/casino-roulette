@@ -13,6 +13,7 @@ class ShowMainPage(View):
     color = ''
     amount_value = 0
     def get(self, request):
+        last_bets = StatisticRouletteUser.objects.all().order_by("-time")[:4]
         global color
         global amount_value
         num = random.randint(1, 100)
@@ -47,7 +48,7 @@ class ShowMainPage(View):
                         return JsonResponse({'result': 'BLACK', 'after_bet_balance': get_balance(request)}, status=200)
                     amount_value = save_loss_bet(request, amount_value, color)
                     return JsonResponse({'result': 'BLACK', 'after_bet_balance': get_balance(request)}, status=200)
-        return render(request, 'roulette/main_page.html')
+        return render(request, 'roulette/main_page.html', {"last_bets":last_bets})
 
 
 
